@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-5 coloum">
                 <form>
                     <div class="form-group">
                         <label for="name" class="form-group-name">
                             Nama
                         </label>
-                        <input v-model="name" type="text" class="form-control name" id="name" placeholder="Contoh: Andrew Justin">
+                        <input v-model="name" type="text" @keypress="handleKeypress('name')" class="form-control name" id="name" placeholder="Contoh: Andrew Justin">
                         <small id="error-name" class="form-text text-muted" style="color: red !important" v-if="errorName">{{ errorName }}</small>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group gender">
                         <label for="jenis-kelamin">
                             Jenis Kelamin
                         </label>
@@ -57,31 +57,31 @@
                             <small id="error-Hobby" class="form-text text-muted" style="color: red !important" v-if="errorHobby">{{ errorHobby }}</small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">
+                        <label for="inputEmail4">
                             Email
                         </label>
-                        <input v-model="email" type="email" class="form-control email" id="email" placeholder="Contoh: andrewjustin31@mail.com">
+                        <input v-model="email" @keypress="handleKeypress('email')" type="email" class="form-control" id="inputEmail4" placeholder="Contoh: andrewjustin31@mail.com">
                         <small id="error-email" class="form-text text-muted" style="color: red !important" v-if="errorEmail">{{ errorEmail }}</small>
                     </div>
                     <div class="form-group">    
                         <label for="phone">
                             No. Telp
                         </label>
-                        <input v-model="phone" type="number" class="form-control phone" id="phone" placeholder="Contoh: 0822 5950 8497">
+                        <input v-model="phone" @keypress="handleKeypress('phone')" type="number" class="form-control" id="phone" placeholder="Contoh: 0822 5950 8497">
                         <small id="error-phone" class="form-text text-muted" style="color: red !important" v-if="errorPhone">{{ errorPhone }}</small>
                     </div>
                     <div class="form-group">
                         <label for="username">
                             Username
                         </label>
-                        <input v-model="username" type="text" class="form-control username" id="username" placeholder="Contoh: andrewjstn" maxlength="10">
+                        <input v-model="username" @keypress="handleKeypress('username')" type="text" class="form-control" id="username" placeholder="Contoh: andrewjstn" maxlength="10">
                         <small id="error-username" class="form-text text-muted" style="color: red !important" v-if="errorUsername">{{ errorUsername }}</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">
                             Password
                         </label>
-                        <input v-model="password" type="password" class="form-control password" id="exampleInputPassword1" placeholder="*******" maxlength="7">
+                        <input v-model="password" @keypress="handleKeypress('password')" type="password" class="form-control" id="exampleInputPassword1" placeholder="*******" maxlength="7">
                         <small id="error-password" class="form-text text-muted" style="color: red !important" v-if="errorPassword">{{ errorPassword }}</small>
                     </div>
                     <div class="button-section">
@@ -91,7 +91,7 @@
                             </button>
                         </div>
                         <div class="button-reset">
-                            <button @click="clickReset" type="button" class="btn btn-primary" data-dismiss="button" aria-label="button">
+                            <button @click="clickReset" type="button" class="btn btn-danger" data-dismiss="button" aria-label="button">
                                 Reset
                             </button>
                         </div>
@@ -121,6 +121,14 @@ export default {
             errorPassword: '',
             hobby: [],
         }
+    },
+    watch: {
+      gender() {
+        if (this.gender) this.errorGender = ''
+      },
+      hobby() {
+        if (this.hobby) this.errorHobby = '' 
+      }
     },
     methods: {
         validateInput() {
@@ -163,6 +171,29 @@ export default {
         showAlert(param) {
             alert(param)
         },
+        handleKeypress(param) {
+          if (param == 'name'){
+            this.errorName = ''
+          }
+           if (param == 'gender'){
+            this.errorGender = ''
+          }
+          if (param == 'hobby'){
+            this.errorHobby = ''
+          }
+          if (param == 'email'){
+            this.errorEmail = ''
+          }
+          if (param == 'phone'){
+            this.errorPhone = ''
+          }
+          if (param == 'username'){
+            this.errorUsername = ''
+          }
+          if (param == 'password'){
+            this.errorPassword = ''
+          }
+        },
         clickDaftar() {
             this.validateInput()
             if (this.name && this.gender && this.hobby && this.email && this.phone && this.username && this.password) {
@@ -183,24 +214,26 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: whitesmoke;
+  font-family: nunito, sans-serif;
+}
+.coloum {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 0 25px snow;
+  font-size: 16px;
+}
 .name {
-    font-style: italic;
-    text-transform: capitalize;
+  font-style: italic;
+  text-transform: capitalize;
 }
-.email {
-    font-style: italic;
-}
-.phone {
-    font-style: italic;
-}
-.username {
-    font-style: italic;
-}
-.password {
-    font-style: italic;
+.form-control {
+  font-style: italic;
 }
 .button-section {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 </style>
