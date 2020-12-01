@@ -60,7 +60,7 @@
                         <label for="exampleFormControlInput1">
                             Email
                         </label>
-                        <input v-model="email" @keypress="handleKeypress('email')" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="exampleFormControlInput1" placeholder="Contoh: andrewjustin31@mail.com" required>
+                        <input v-model="email" @keypress="handleKeypress('email')" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Contoh: andrewjustin31@mail.com" required>
                         <small id="error-email" class="form-text text-muted" style="color: red !important" v-if="errorEmail">{{ errorEmail }}</small>
                     </div>
                     <div class="form-group">    
