@@ -57,10 +57,10 @@
                             <small id="error-Hobby" class="form-text text-muted" style="color: red !important" v-if="errorHobby">{{ errorHobby }}</small>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail4">
+                        <label for="exampleFormControlInput1">
                             Email
                         </label>
-                        <input v-model="email" @keypress="handleKeypress('email')" type="email" class="form-control" id="inputEmail4" placeholder="Contoh: andrewjustin31@mail.com">
+                        <input v-model="email" @keypress="handleKeypress('email')" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="exampleFormControlInput1" placeholder="Contoh: andrewjustin31@mail.com" required>
                         <small id="error-email" class="form-text text-muted" style="color: red !important" v-if="errorEmail">{{ errorEmail }}</small>
                     </div>
                     <div class="form-group">    
@@ -167,7 +167,7 @@ export default {
                 this.showAlert('Field password tidak boleh kosong!')
                 return
             }
-        },
+        },     
         showAlert(param) {
             alert(param)
         },
